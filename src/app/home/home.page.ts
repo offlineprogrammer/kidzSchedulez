@@ -13,4 +13,32 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  addKid() {
+    this.alertCtrl
+      .create({
+        header: "New Kid",
+        message: "What should the title of this note be?",
+        inputs: [
+          {
+            type: "text",
+            name: "title"
+          }
+        ],
+        buttons: [
+          {
+            text: "Cancel"
+          },
+          {
+            text: "Save",
+            handler: data => {
+            //  this.notesService.createNote(data.title);
+            }
+          }
+        ]
+      })
+      .then(alert => {
+        alert.present();
+      });
+  }
 }
