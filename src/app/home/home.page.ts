@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AlertController, NavController } from "@ionic/angular";
+import {KidsService} from "../services/kids.service";
 
 @Component({
   selector: "app-home",
@@ -8,11 +9,14 @@ import { AlertController, NavController } from "@ionic/angular";
 })
 export class HomePage implements OnInit {
   constructor(
+    private kidsService: KidsService,
     private alertCtrl: AlertController,
     private navCtrl: NavController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.kidsService.load();
+  }
 
   addKid() {
     this.alertCtrl
@@ -32,7 +36,7 @@ export class HomePage implements OnInit {
           {
             text: "Save",
             handler: data => {
-            //  this.notesService.createNote(data.title);
+            this.kidsService.createKid(data.title);
             }
           }
         ]
