@@ -73,4 +73,10 @@ export class PlanzPage implements OnInit {
       });
   }
 
+
+  deleteKid(){
+    this.kidsService.deleteKid(this.kid);
+    this.navCtrl.navigateBack('/home');
+  }
+
 }

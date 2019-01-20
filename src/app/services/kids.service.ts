@@ -43,6 +43,19 @@ export class KidsService {
     
   }
 
+  deleteKid(kid): void {
+
+    // Get the index in the array of the note that was passed in
+    let index = this.kids.indexOf(kid);
+
+    // Delete that element of the array and resave the data
+    if(index > -1){
+      this.kids.splice(index, 1);
+      this.save();
+    }
+
+  }
+
 
   createKid(name): void {
 
