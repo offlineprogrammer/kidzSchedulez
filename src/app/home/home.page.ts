@@ -22,11 +22,11 @@ export class HomePage implements OnInit {
     this.alertCtrl
       .create({
         header: "New Kid",
-        message: "What should the title of this note be?",
+        message: "Enter the Kid name",
         inputs: [
           {
             type: "text",
-            name: "title"
+            name: "name"
           }
         ],
         buttons: [
@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
           {
             text: "Save",
             handler: data => {
-            this.kidsService.createKid(data.title);
+            this.kidsService.createKid(data.name);
             }
           }
         ]

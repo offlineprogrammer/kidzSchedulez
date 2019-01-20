@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NavController } from "@ionic/angular";
+import { AlertController,NavController } from "@ionic/angular";
 import { ActivatedRoute } from "@angular/router";
 import { Kid } from "../classes/kid";
 import { KidsService } from "../services/kids.service";
@@ -15,7 +15,8 @@ export class PlanzPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private navCtrl: NavController,
-    private kidsService: KidsService
+    private kidsService: KidsService,
+    private alertCtrl: AlertController,
   ) {
     this.kid = {
       id: '',
@@ -35,4 +36,39 @@ export class PlanzPage implements OnInit {
     }
 
   }
+
+  addPlan() {
+    this.alertCtrl
+      .create({
+        header: "New Plan",
+        message: "Enter the Plan name & date",
+        inputs: [
+          {
+            type: "text",
+            name: "planname"
+          },
+          {
+            type: "date",
+            name: "plandate"
+            
+          },
+          
+        ],
+        buttons: [
+          {
+            text: "Cancel"
+          },
+          {
+            text: "Save",
+            handler: data => {
+            this.kidsService.createKid(data.title);
+            }
+          }
+        ]
+      })
+      .then(alert => {
+        alert.present();
+      });
+  }
+
 }
