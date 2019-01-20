@@ -3,6 +3,7 @@ import { AlertController,NavController } from "@ionic/angular";
 import { ActivatedRoute } from "@angular/router";
 import { Kid } from "../classes/kid";
 import { KidsService } from "../services/kids.service";
+import {PlanzService} from "../services/planz.service";
 
 @Component({
   selector: "app-planz",
@@ -16,6 +17,7 @@ export class PlanzPage implements OnInit {
     private route: ActivatedRoute,
     private navCtrl: NavController,
     private kidsService: KidsService,
+    private planzService: PlanzService,
     private alertCtrl: AlertController,
   ) {
     this.kid = {
@@ -50,7 +52,7 @@ export class PlanzPage implements OnInit {
           {
             type: "date",
             name: "plandate"
-            
+
           },
           
         ],
@@ -61,7 +63,7 @@ export class PlanzPage implements OnInit {
           {
             text: "Save",
             handler: data => {
-            this.kidsService.createKid(data.title);
+            this.planzService.createPlan(this.kid.id,data.planname, data.plandate);
             }
           }
         ]
