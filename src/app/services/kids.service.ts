@@ -37,6 +37,12 @@ export class KidsService {
   }
 
 
+  getKid(id): Kid {
+    // Return the note that has an id matching the id passed in
+    return this.kids.find(kid => kid.id === id);
+    
+  }
+
 
   createKid(name): void {
 
