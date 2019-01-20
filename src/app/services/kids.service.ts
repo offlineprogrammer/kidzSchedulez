@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Kid} from '../classes/kid';
 import { Storage } from '@ionic/storage';
+import {Plan} from '../classes/plan';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Storage } from '@ionic/storage';
 export class KidsService {
 
   public kids: Kid[]=[];
+  public planz: Plan[]=[];
   public loaded: boolean = false;
 
   constructor(private storage: Storage) { }
@@ -38,8 +40,9 @@ export class KidsService {
 
 
   getKid(id): Kid {
-    // Return the note that has an id matching the id passed in
+  
     return this.kids.find(kid => kid.id === id);
+
     
   }
 
@@ -56,6 +59,21 @@ export class KidsService {
 
   }
 
+  createPlan(kid, name, plandate): void {
+
+   this.planz = kid.planz;
+    let id = Math.max(...this.planz.map(plan => parseInt(plan.id)), 0) + 1;
+
+    this.planz.push({
+      id: id.toString(),
+      name: name,
+      planDate:plandate
+
+    });
+
+    this.save();
+
+  }
 
   createKid(name): void {
 
@@ -64,7 +82,8 @@ export class KidsService {
 
     this.kids.push({
       id: id.toString(),
-      name: name
+      name: name,
+      planz:[]
     });
 
     this.save();
