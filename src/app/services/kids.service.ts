@@ -67,7 +67,8 @@ export class KidsService {
     this.planz.push({
       id: id.toString(),
       name: name,
-      planDate:plandate
+      planDate:plandate,
+      planTaskz:[]
 
     });
 

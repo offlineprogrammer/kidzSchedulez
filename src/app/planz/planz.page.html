@@ -20,7 +20,7 @@
       </ion-fab>
 
       <ion-list>
-        <ion-item button detail *ngFor="let plan of kid.planz" [href]="'/planz/' + kid.id" routerDirection="forward">
+        <ion-item button detail *ngFor="let plan of kid.planz" [href]="'/taskz/' + kid.id+'/'+plan.id" routerDirection="forward">
           <ion-label>{{ plan.name}}</ion-label>
         </ion-item>
       </ion-list>
