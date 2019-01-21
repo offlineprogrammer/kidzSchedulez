@@ -38,15 +38,15 @@ export class KidsService {
 
   }
 
-
-  getKid(id): Kid {
-  
-    return this.kids.find(kid => kid.id === id);
-
-    
+  getPlan(kid_id: string, plan_Id): Plan {
+    return this.kids.find(kid => kid.id === kid_id).planz.find(plan => plan.id === plan_Id); 
   }
 
-  deleteKid(kid): void {
+  getKid(id: string): Kid {
+    return this.kids.find(kid => kid.id === id); 
+  }
+
+  deleteKid(kid: Kid): void {
 
     // Get the index in the array of the note that was passed in
     let index = this.kids.indexOf(kid);

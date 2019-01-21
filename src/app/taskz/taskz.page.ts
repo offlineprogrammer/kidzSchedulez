@@ -1,15 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { AlertController, NavController } from "@ionic/angular";
+import { ActivatedRoute } from "@angular/router";
+import { Kid } from "../classes/kid";
+import {Plan} from "../classes/plan";
+import { KidsService } from "../services/kids.service";
 
 @Component({
-  selector: 'app-taskz',
-  templateUrl: './taskz.page.html',
-  styleUrls: ['./taskz.page.scss'],
+  selector: "app-taskz",
+  templateUrl: "./taskz.page.html",
+  styleUrls: ["./taskz.page.scss"]
 })
 export class TaskzPage implements OnInit {
+  private kid: Kid;
+  private plan: Plan
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private navCtrl: NavController,
+    private kidsService: KidsService,
+    private alertCtrl: AlertController
+  ) {
 
-  ngOnInit() {
+    this.plan = {
+      id: '',
+      name: '',
+      planDate: new Date(),
+     planTaskz:[]
+    };
+
+    this.kid = {
+      id: '',
+      name: '',
+      planz:[]
+    };
   }
 
+  ngOnInit() {
+    let kidId = this.route.snapshot.paramMap.get("kid_id");
+    let planId = this.route.snapshot.paramMap.get("plan_id");
+
+    if(this.kidsService.loaded){
+      this.plan = this.kidsService.getPlan(kidId,planId)
+    } else {
+      this.kidsService.load().then(() => {
+        this.plan = this.kidsService.getPlan(kidId,planId)
+      });
+    }
+
+  }
 }
