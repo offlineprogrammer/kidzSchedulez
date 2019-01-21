@@ -3,6 +3,7 @@ import { AlertController,NavController } from "@ionic/angular";
 import { ActivatedRoute } from "@angular/router";
 import { Kid } from "../classes/kid";
 import { KidsService } from "../services/kids.service";
+import { Placeholder } from "@angular/compiler/src/i18n/i18n_ast";
 
 @Component({
   selector: "app-planz",
@@ -53,7 +54,8 @@ export class PlanzPage implements OnInit {
           },
           {
             type: "date",
-            name: "plandate"
+            name: "plandate",
+           value: Date.now(),
 
           },
           
