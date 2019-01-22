@@ -19,4 +19,10 @@
         </ion-fab-button>
       </ion-fab>
 
+      <ion-list>
+          <ion-item button detail *ngFor="let task of plan.planTaskz" [href]="'/taskz/'+plan.id" routerDirection="forward">
+            <ion-label>{{ task.name}}</ion-label>
+          </ion-item>
+        </ion-list>
+
 </ion-content>
