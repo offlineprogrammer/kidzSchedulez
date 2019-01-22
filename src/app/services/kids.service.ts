@@ -66,15 +66,16 @@ export class KidsService {
   }
 
   createTask(kid_Id, plan, taskName): void {
-
-   
     let id = Math.max(...plan.planTaskz.map(task => parseInt(task.id)), 0) + 1;
 
-    plan.planTaskz.push({
-      id: id.toString(),
-      name: name,
-  
-    });
+    this.kids
+      .filter(kid => kid.id === kid_Id)[0]
+      .planz.filter(oPlan => oPlan.id === plan.id)[0]
+      .planTaskz.push({
+        id: id.toString(),
+        name: taskName,
+        bComplete: false
+      });
 
     this.save();
   }
