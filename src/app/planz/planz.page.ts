@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AlertController,NavController } from "@ionic/angular";
+import { AlertController, NavController } from "@ionic/angular";
 import { ActivatedRoute } from "@angular/router";
 import { Kid } from "../classes/kid";
 import { KidsService } from "../services/kids.service";
@@ -16,29 +16,25 @@ export class PlanzPage implements OnInit {
     private route: ActivatedRoute,
     private navCtrl: NavController,
     private kidsService: KidsService,
-  
-    private alertCtrl: AlertController,
+    private alertCtrl: AlertController
   ) {
     this.kid = {
-      id: '',
-      name: '',
-      planz:[]
+      id: "",
+      name: "",
+      planz: []
     };
   }
 
   ngOnInit() {
     let kidId = this.route.snapshot.paramMap.get("id");
 
-    if(this.kidsService.loaded){
-      this.kid = this.kidsService.getKid(kidId)
+    if (this.kidsService.loaded) {
+      this.kid = this.kidsService.getKid(kidId);
     } else {
       this.kidsService.load().then(() => {
-        this.kid = this.kidsService.getKid(kidId)
+        this.kid = this.kidsService.getKid(kidId);
       });
     }
-
-    
-
   }
 
   addPlan() {
@@ -54,10 +50,8 @@ export class PlanzPage implements OnInit {
           {
             type: "date",
             name: "plandate",
-           value: Date.now(),
-
-          },
-          
+            value: Date.now()
+          }
         ],
         buttons: [
           {
@@ -66,7 +60,11 @@ export class PlanzPage implements OnInit {
           {
             text: "Save",
             handler: data => {
-            this.kidsService.createPlan(this.kid,data.planname, data.plandate);
+              this.kidsService.createPlan(
+                this.kid,
+                data.planname,
+                data.plandate
+              );
             }
           }
         ]
@@ -76,10 +74,8 @@ export class PlanzPage implements OnInit {
       });
   }
 
-
-  deleteKid(){
+  deleteKid() {
     this.kidsService.deleteKid(this.kid);
-    this.navCtrl.navigateBack('/home');
+    this.navCtrl.navigateBack("/home");
   }
-
 }

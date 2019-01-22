@@ -12,7 +12,8 @@ import { KidsService } from "../services/kids.service";
 })
 export class TaskzPage implements OnInit {
   private kid: Kid;
-  private plan: Plan
+  private plan: Plan;
+  private kid_Id: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,16 +37,49 @@ export class TaskzPage implements OnInit {
   }
 
   ngOnInit() {
-    let kidId = this.route.snapshot.paramMap.get("kid_id");
+    this.kid_Id = this.route.snapshot.paramMap.get("kid_id");
     let planId = this.route.snapshot.paramMap.get("plan_id");
 
     if(this.kidsService.loaded){
-      this.plan = this.kidsService.getPlan(kidId,planId)
+      this.plan = this.kidsService.getPlan(this.kid_Id,planId)
     } else {
       this.kidsService.load().then(() => {
-        this.plan = this.kidsService.getPlan(kidId,planId)
+        this.plan = this.kidsService.getPlan(this.kid_Id,planId)
       });
     }
 
   }
+
+  addTask() {
+    this.alertCtrl
+      .create({
+        header: "New Task",
+        message: "Enter the Task name ",
+        inputs: [
+          {
+            type: "text",
+            name: "taskname"
+          }
+        ],
+        buttons: [
+          {
+            text: "Cancel"
+          },
+          {
+            text: "Save",
+            handler: data => {
+              this.kidsService.createTask(
+                this.kid_Id,
+                this.plan,
+                data.taskname
+              );
+            }
+          }
+        ]
+      })
+      .then(alert => {
+        alert.present();
+      });
+  }
+
 }
