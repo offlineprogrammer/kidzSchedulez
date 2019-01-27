@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'new-kid', loadChildren: './new-kid/new-kid.module#NewKidPageModule' },
   { path: 'planz/:id', loadChildren: './planz/planz.module#PlanzPageModule' },
   { path: 'taskz/:kid_id/:plan_id', loadChildren: './taskz/taskz.module#TaskzPageModule' },
+  { path: 'task-details/:task_id/', loadChildren: './task-details/task-details.module#TaskDetailsPageModule' },
 ];
 
 @NgModule({
