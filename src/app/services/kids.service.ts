@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Kid } from "../classes/kid";
 import { Storage } from "@ionic/storage";
 import { Plan } from "../classes/plan";
+import { Task } from "../classes/task";
 
 @Injectable({
   providedIn: "root"
@@ -28,6 +29,13 @@ export class KidsService {
         resolve(true);
       });
     });
+  }
+
+  getTask(kid_id: string, plan_Id: string, task_Id: string): Task {
+    return this.kids
+      .find(kid => kid.id === kid_id)
+      .planz.find(plan => plan.id === plan_Id)
+      .planTaskz.find(task => task.id === task_Id);
   }
 
   getPlan(kid_id: string, plan_Id): Plan {
