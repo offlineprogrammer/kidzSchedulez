@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+        <ion-icon name="arrow-back" (click)="goBack()" ></ion-icon>
     </ion-buttons>
     <ion-title>{{ plan.name }}</ion-title>
     <ion-buttons slot="end">

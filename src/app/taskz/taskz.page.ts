@@ -50,6 +50,10 @@ export class TaskzPage implements OnInit {
 
   }
 
+  goBack() {
+    this.navCtrl.navigateBack('planz/'+this.plan.id);
+  }
+
   addTask() {
     this.alertCtrl
       .create({
