@@ -21,6 +21,7 @@ export class PlanzPage implements OnInit {
     this.kid = {
       id: "",
       name: "",
+      photo:'',
       planz: []
     };
   }

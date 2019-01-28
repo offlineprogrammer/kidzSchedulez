@@ -32,6 +32,7 @@ export class TaskzPage implements OnInit {
     this.kid = {
       id: '',
       name: '',
+      photo:'',
       planz:[]
     };
   }
