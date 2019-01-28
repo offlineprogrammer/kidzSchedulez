@@ -14,14 +14,14 @@
 
 <ion-content padding>
 
-    <ion-card>
-        <ion-img [src]='kid.photo'></ion-img>
+    <ion-card >
+        <ion-img [src]='kid.photo' ></ion-img>
         <ion-card-header>
-            <ion-card-title>{{ kid.name }}</ion-card-title>
+            <ion-card-title text-center>{{ kid.name }}</ion-card-title>
         </ion-card-header>
     </ion-card>
 
-    <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button (click)="addPlan()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
