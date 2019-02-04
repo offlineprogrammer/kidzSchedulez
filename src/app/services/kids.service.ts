@@ -73,7 +73,7 @@ export class KidsService {
     this.save();
   }
 
-  createTask(kid_Id, plan, taskName): void {
+  createTask(kid_Id: string, plan: Plan, taskName: string): void {
     let id = Math.max(...plan.planTaskz.map(task => parseInt(task.id)), 0) + 1;
 
     this.kids
@@ -85,6 +85,14 @@ export class KidsService {
         bComplete: false
       });
 
+    this.save();
+  }
+
+  updateTask(kid_Id: string, plan_Id: string, task: Task): void {
+     this.kids
+      .filter(kid => kid.id === kid_Id)[0]
+      .planz.filter(oPlan => oPlan.id === plan_Id)[0]
+      .planTaskz.filter(oTask => oTask.id === task.id)[0].bComplete = task.bComplete;
     this.save();
   }
 

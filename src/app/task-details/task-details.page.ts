@@ -37,6 +37,7 @@ export class TaskDetailsPage implements OnInit {
     
 
       console.log(this.task.bComplete)
+      this.kidsService.updateTask(this.kid_Id,this.plan_Id,this.task);
       return;
    
    
