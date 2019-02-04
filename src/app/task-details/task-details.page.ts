@@ -14,6 +14,7 @@ export class TaskDetailsPage implements OnInit {
   private kid_Id: string;
   private plan_Id: string;
 
+
   constructor(
     private route: ActivatedRoute,
     private kidsService: KidsService,
@@ -24,11 +25,22 @@ export class TaskDetailsPage implements OnInit {
       name:'',
       bComplete:false
     }
+
+
   }
 
   goBack() {
     this.navCtrl.navigateBack('taskz/'+this.kid_Id+'/'+this.plan_Id);
   }
+
+  taskChanged($event) {
+    
+
+      console.log(this.task.bComplete)
+      return;
+   
+   
+ }
 
   ngOnInit() {
     let taskId = this.route.snapshot.paramMap.get("task_id");
@@ -37,9 +49,11 @@ export class TaskDetailsPage implements OnInit {
 
     if (this.kidsService.loaded) {
       this.task = this.kidsService.getTask(this.kid_Id,this.plan_Id,taskId);
+     
     } else {
       this.kidsService.load().then(() => {
         this.task =  this.kidsService.getTask(this.kid_Id,this.plan_Id,taskId);
+      
       });
     }
   }

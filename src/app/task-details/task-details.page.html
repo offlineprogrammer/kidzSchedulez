@@ -24,7 +24,8 @@
     <ion-list>
         <ion-item>
           <ion-label>Completed</ion-label>
-          <ion-toggle [(ngModel)]=" task.bComplete"></ion-toggle>
+         
+          <ion-toggle [(ngModel)]="task.bComplete" color="success" (ionChange)="taskChanged($event)"></ion-toggle>
         </ion-item>
       
        
