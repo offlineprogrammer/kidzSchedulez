@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Kid } from "../classes/kid";
 import {Plan} from "../classes/plan";
 import { KidsService } from "../services/kids.service";
+import { Task } from "../classes/task";
 
 @Component({
   selector: "app-taskz",
@@ -36,6 +37,11 @@ export class TaskzPage implements OnInit {
       planz:[]
     };
   }
+
+  openDetails(otask: Task) {
+    this.navCtrl.navigateForward('task-details/'+this.kid_Id+'/'+this.plan.id +'/'+otask.id);
+  }
+
 
   ngOnInit() {
     this.kid_Id = this.route.snapshot.paramMap.get("kid_id");
