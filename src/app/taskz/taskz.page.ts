@@ -42,6 +42,11 @@ export class TaskzPage implements OnInit {
     this.navCtrl.navigateForward('task-details/'+this.kid_Id+'/'+this.plan.id +'/'+otask.id);
   }
 
+  completeTask(otask: Task) {
+    otask.bComplete=true;
+    this.kidsService.updateTask(this.kid_Id,this.plan.id,otask);
+   
+  }
 
   ngOnInit() {
     this.kid_Id = this.route.snapshot.paramMap.get("kid_id");
